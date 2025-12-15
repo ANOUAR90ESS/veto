@@ -66,30 +66,9 @@ export const generateDirectoryTools = async (count: number = 3, category?: strin
   const response = await callGeminiAPI({
     task: 'generateContent',
     model: 'gemini-2.5-flash',
-    contents: prompt,
+    contents: prompt + "\n\nIMPORTANT: Return ONLY valid JSON array, no other text.",
     config: {
       tools: [{ googleSearch: {} }], // Search Grounding
-      responseMimeType: "application/json",
-      responseSchema: {
-        type: Type.ARRAY,
-        items: {
-          type: Type.OBJECT,
-          properties: {
-            id: { type: Type.STRING },
-            name: { type: Type.STRING },
-            description: { type: Type.STRING },
-            category: { type: Type.STRING },
-            tags: { type: Type.ARRAY, items: { type: Type.STRING } },
-            price: { type: Type.STRING },
-            website: { type: Type.STRING },
-            features: { type: Type.ARRAY, items: { type: Type.STRING } },
-            useCases: { type: Type.ARRAY, items: { type: Type.STRING } },
-            pros: { type: Type.ARRAY, items: { type: Type.STRING } },
-            cons: { type: Type.ARRAY, items: { type: Type.STRING } },
-            howToUse: { type: Type.STRING },
-          }
-        }
-      }
     }
   });
 
@@ -129,26 +108,9 @@ export const generateToolDetails = async (topic: string): Promise<Partial<Tool>>
   const response = await callGeminiAPI({
     task: 'generateContent',
     model: 'gemini-2.5-flash',
-    contents: prompt,
+    contents: prompt + "\n\nIMPORTANT: Return ONLY valid JSON object, no other text.",
     config: {
       tools: [{ googleSearch: {} }],
-      responseMimeType: "application/json",
-      responseSchema: {
-        type: Type.OBJECT,
-        properties: {
-          name: { type: Type.STRING },
-          description: { type: Type.STRING },
-          category: { type: Type.STRING },
-          price: { type: Type.STRING },
-          website: { type: Type.STRING },
-          tags: { type: Type.ARRAY, items: { type: Type.STRING } },
-          features: { type: Type.ARRAY, items: { type: Type.STRING } },
-          useCases: { type: Type.ARRAY, items: { type: Type.STRING } },
-          pros: { type: Type.ARRAY, items: { type: Type.STRING } },
-          cons: { type: Type.ARRAY, items: { type: Type.STRING } },
-          howToUse: { type: Type.STRING },
-        }
-      }
     }
   });
 
@@ -181,20 +143,9 @@ export const generateNewsDetails = async (topic: string): Promise<Partial<NewsAr
     const response = await callGeminiAPI({
         task: 'generateContent',
         model: 'gemini-2.5-flash',
-        contents: prompt,
+        contents: prompt + "\n\nIMPORTANT: Return ONLY valid JSON object, no other text.",
         config: {
             tools: [{ googleSearch: {} }],
-            responseMimeType: "application/json",
-            responseSchema: {
-                type: Type.OBJECT,
-                properties: {
-                    title: { type: Type.STRING },
-                    description: { type: Type.STRING },
-                    content: { type: Type.STRING },
-                    category: { type: Type.STRING },
-                    source: { type: Type.STRING },
-                }
-            }
         }
     });
 
@@ -224,23 +175,9 @@ export const generateDirectoryNews = async (count: number = 3): Promise<NewsArti
     const response = await callGeminiAPI({
         task: 'generateContent',
         model: 'gemini-2.5-flash',
-        contents: prompt,
+        contents: prompt + "\n\nIMPORTANT: Return ONLY valid JSON array, no other text.",
         config: {
             tools: [{ googleSearch: {} }],
-            responseMimeType: "application/json",
-            responseSchema: {
-                type: Type.ARRAY,
-                items: {
-                    type: Type.OBJECT,
-                    properties: {
-                        title: { type: Type.STRING },
-                        description: { type: Type.STRING },
-                        content: { type: Type.STRING },
-                        category: { type: Type.STRING },
-                        source: { type: Type.STRING },
-                    }
-                }
-            }
         }
     });
 
@@ -275,19 +212,9 @@ export const extractNewsFromRSSItem = async (title: string, description: string)
   const response = await callGeminiAPI({
     task: 'generateContent',
     model: 'gemini-2.5-flash',
-    contents: prompt,
+    contents: prompt + "\n\nIMPORTANT: Return ONLY valid JSON object, no other text.",
     config: {
       tools: [{ googleSearch: {} }],
-      responseMimeType: "application/json",
-      responseSchema: {
-        type: Type.OBJECT,
-        properties: {
-            title: { type: Type.STRING },
-            description: { type: Type.STRING },
-            content: { type: Type.STRING },
-            category: { type: Type.STRING },
-        }
-      }
     }
   });
 
@@ -542,20 +469,9 @@ export const extractToolFromRSSItem = async (title: string, description: string)
   const response = await callGeminiAPI({
     task: 'generateContent',
     model: 'gemini-2.5-flash',
-    contents: prompt,
+    contents: prompt + "\n\nIMPORTANT: Return ONLY valid JSON object, no other text.",
     config: {
       tools: [{ googleSearch: {} }],
-      responseMimeType: "application/json",
-      responseSchema: {
-        type: Type.OBJECT,
-        properties: {
-            name: { type: Type.STRING },
-            description: { type: Type.STRING },
-            category: { type: Type.STRING },
-            tags: { type: Type.ARRAY, items: { type: Type.STRING } },
-            price: { type: Type.STRING },
-        }
-      }
     }
   });
 
